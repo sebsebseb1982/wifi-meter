@@ -1,0 +1,23 @@
+# PlatformIO
+.pio/
+.pioenvs/
+.piolibdeps/
+
+# VSCode
+.vscode/
+
+# IntelliJ-based IDEs
+.idea/
+
+# MacOS
+.DS_Store
+
+# Logs
+*.log
+
+# Backup files
+*~
+*.bak
+*.swp
+
+secrets.h

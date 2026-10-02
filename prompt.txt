@@ -1,0 +1,8 @@
+Je veux faire un mini détecteur  de force signal Wifi.
+Pour cela, j'ai un esp32-cam (Cf. ESP32-CAM_BrochageSansCarteMicroSD_04_1600x787.png) et un écran oled 128×64 0,96 pouces  (GND, VCC, SCK, SDA).
+Je veux que tu me créées :
+ - une application platform io qui se connecte à un réseau wifi dont le SSID password te sera donné dans un fichier secrets.h. Sera affiché en temps réel la force du signal. Le flash présent sur l'esp32 pourrait clignoter avec une vitesse proportionnelle à la force du signal
+ - un schéma de cablage
+ - les instructions de flash
+
+Tu peux te baser sur C:\git\arduino\starglazer pour voir comment je veux que tu organises le projet
