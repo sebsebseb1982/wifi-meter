@@ -8,6 +8,10 @@ unsigned long SignalStrength::lastSampleMs = 0;
 uint8_t SignalStrength::historyBuffer[HISTORY_SIZE];
 int SignalStrength::historyStart = 0;
 int SignalStrength::historyLength = 0;
+int SignalStrength::statMin = 0;
+int SignalStrength::statMax = -127;
+long SignalStrength::statSum = 0;
+long SignalStrength::statCount = 0;
 
 void SignalStrength::loop() {
   if (millis() - lastSampleMs < SIGNAL_SAMPLE_PERIOD_MS) {
@@ -34,6 +38,31 @@ void SignalStrength::loop() {
     valid = true;
   }
   push(quality());
+
+  int current = rssi();
+  statMin = min(statMin, current);
+  statMax = max(statMax, current);
+  statSum += current;
+  statCount++;
+}
+
+int SignalStrength::minRssi() {
+  return statCount ? statMin : 0;
+}
+
+int SignalStrength::maxRssi() {
+  return statCount ? statMax : 0;
+}
+
+int SignalStrength::averageRssi() {
+  return statCount ? (int)lroundf((float)statSum / statCount) : 0;
+}
+
+void SignalStrength::resetStats() {
+  statMin = 0;
+  statMax = -127;
+  statSum = 0;
+  statCount = 0;
 }
 
 boolean SignalStrength::hasValue() {

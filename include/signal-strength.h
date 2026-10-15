@@ -23,6 +23,11 @@ class SignalStrength {
     // Quality history, index 0 is the oldest sample
     static int historyCount();
     static int history(int index);
+    // Min / max / average RSSI (dBm) since the last resetStats()
+    static int minRssi();
+    static int maxRssi();
+    static int averageRssi();
+    static void resetStats();
 
   private:
     static float smoothedRssi;
@@ -31,6 +36,10 @@ class SignalStrength {
     static uint8_t historyBuffer[HISTORY_SIZE];
     static int historyStart;
     static int historyLength;
+    static int statMin;
+    static int statMax;
+    static long statSum;
+    static long statCount;
     static void push(int quality);
 };
 
